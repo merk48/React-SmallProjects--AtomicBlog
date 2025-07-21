@@ -22,7 +22,7 @@ function useSearch() {
   const context = useContext(SearchContext);
 
   if (context === undefined)
-    throw new Error("SearchContext was used outside of the SearchProvider!");
+    throw new Error("SearchContext was used outside of the SearchProvider!.");
 
   return context;
 }
