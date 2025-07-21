@@ -1,19 +1,12 @@
 import { createContext, useContext, useState } from "react";
-import { faker } from "@faker-js/faker";
 import { useSearch } from "../search";
+import { createRandomPost } from "../../utils/helper";
 
-function createRandomPost() {
-  return {
-    title: `${faker.hacker.adjective()} ${faker.hacker.noun()}`,
-    body: faker.hacker.phrase(),
-  };
-}
 // 1- Create a new context
 // 2- Provide value to child components
 // 3- Consuming context value
 
 const PostContext = createContext();
-// const SearchContext = createContext();
 
 function PostProvider({ children }) {
   const [posts, setPosts] = useState(() =>
