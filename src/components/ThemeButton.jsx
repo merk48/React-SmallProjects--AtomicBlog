@@ -1,5 +1,5 @@
-import { Button } from "bootstrap";
 import { useState, useEffect } from "react";
+import Button from "./Button";
 
 function ThemeButton() {
   // Whenever `isFakeDark` changes, we toggle the `fake-dark-mode` class on the HTML element (see in "Elements" dev tool).
