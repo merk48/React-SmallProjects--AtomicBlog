@@ -15,7 +15,7 @@ function FormAddPost() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={(e) => handleSubmit(e)}>
       <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}

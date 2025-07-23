@@ -36,7 +36,7 @@ function PostProvider({ children }) {
       value={{
         posts: searchedPosts,
         onClearPosts: handleClearPosts,
-        onAddPosts: handleAddPost,
+        onAddPost: handleAddPost,
       }}
     >
       {children}
