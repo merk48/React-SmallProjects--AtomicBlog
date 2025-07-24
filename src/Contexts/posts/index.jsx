@@ -1,10 +1,14 @@
-import { createContext, useContext, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 import { useSearch } from "../search";
 import { createRandomPost } from "../../utils/helper";
 
-// 1- Create a new context
-// 2- Provide value to child components
-// 3- Consuming context value
+// 1- Create a new context 2- Provide value to child components 3- Consuming context value
 
 const PostContext = createContext();
 
@@ -23,25 +27,23 @@ function PostProvider({ children }) {
         )
       : posts;
 
-  function handleAddPost(post) {
+  const handleAddPost = useCallback(function handleAddPost(post) {
     setPosts((posts) => [post, ...posts]);
-  }
+  }, []);
 
-  function handleClearPosts() {
+  const handleClearPosts = useCallback(function handleClearPosts() {
     setPosts([]);
-  }
+  }, []);
 
-  return (
-    <PostContext.Provider
-      value={{
-        posts: searchedPosts,
-        onClearPosts: handleClearPosts,
-        onAddPost: handleAddPost,
-      }}
-    >
-      {children}
-    </PostContext.Provider>
-  );
+  const value = useMemo(() => {
+    return {
+      posts: searchedPosts,
+      onClearPosts: handleClearPosts,
+      onAddPost: handleAddPost,
+    };
+  }, [handleAddPost, handleClearPosts, searchedPosts]);
+
+  return <PostContext.Provider value={value}>{children}</PostContext.Provider>;
 }
 
 // Corresponding provider hook
